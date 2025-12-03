@@ -18,3 +18,4 @@ google-chrome/
 mimeapps.list
 openrazer/
 polychromatic/
+*/__pycache__/

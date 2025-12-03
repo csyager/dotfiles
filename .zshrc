@@ -103,6 +103,10 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='nvim'
 alias vim=nvim
 
+# dooit configs - https://dooit-org.github.io/dooit/
+alias dooit='dooit -c ~/.config/dooit/config.py'
+
+
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
 
