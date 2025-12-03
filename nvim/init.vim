@@ -32,8 +32,19 @@ filetype plugin indent on    " required
 :set wrap linebreak
 :set breakindent
 
+set clipboard+=unnamedplus
+
 :command E NERDTree
 let g:NERDTreeNodeDelimiter = "\u00a0"
+
+" Start NERDTree. If a file is specified, move the cursor to its window.
+" Automatically open NERDTree if no file names are given as arguments
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " Python indentation
 au BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4  expandtab autoindent fileformat=unix
